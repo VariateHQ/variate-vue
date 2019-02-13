@@ -20,9 +20,9 @@ export default {
                     return this.$ab.getTrafficBucket(this.testingComponentName);
                 },
                 variation() {
-                    if (this.testingComponentName === 'HeroPrimaryCTA') return 2;
-                    else if (this.testingComponentName === 'HeroSecondaryCTA') return 1;
-                    return 0; // default = null
+                    if (this.testingComponentName === 'HeroPrimaryCTA') return 1;
+                    else if (this.testingComponentName === 'HeroSecondaryCTA') return 2;
+                    return 1; // default = null
                 },
                 attributes() {
                     return this.$_testing_attributes(this.testingComponentName);
