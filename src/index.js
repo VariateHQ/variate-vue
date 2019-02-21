@@ -158,24 +158,110 @@ export default class Testing {
         this.loadExperiments();
 
         // Override with query params info if necessary
-        this.loadQueryParamsOverrides();
+        // this.loadQueryParamsOverrides();
 
         this.isQualified = true;
     }
 
     loadExperiments() {
-        // 1. Check targeting
+        // 1. Get experiments based on bucket
+        let experiments = this.filterExperimentsWithBucket();
+
+        // 2. Check targeting (views)
+        experiments = experiments.filter((experiment) => {
+           return this.checkViewAndAudienceTargeting(experiment);
+        });
+        console.log(experiments);
         // 2. Qualify user
         // 3. Generate/retrieve main traffic bucket for visitor
         // 4. Qualify user for experiments
         // 5. Generate/retrieve buckets if qualified
     }
 
-    loadQueryParamsOverrides() {
-        // Load experiments according to query params override
-        if (Object.keys(this.env.visitor.forcedQueryParams).length && this.env.visitor.forcedQueryParams.force) {
-            this.options.debug && console.debug(debug.QUALIFY_QUERY_PARAMS);
+    filterExperimentsWithBucket() {
+        this.options.debug && console.debug(debug.LOADING_EXPERIMENTS);
+
+        let experiments = [];
+
+        // Target live experiments
+        experiments.push(...this.config.live.experiments);
+
+        // Check bucketed experiments
+        experiments.push(...this.getBucketedExperiments(this.config.live));
+
+        // Target draft experiments if query params forced
+        if(this.shouldForceQueryParams()) {
+            experiments.push(...this.config.draft.experiments);
+
+            experiments.push(...this.getBucketedExperiments(this.config.draft));
         }
+
+        return experiments;
+    }
+
+    checkViewAndAudienceTargeting(experiment) {
+        let isQualifiedForView = false;
+        let isQualifiedForAudience = false;
+
+        this.options.debug && console.debug(debug.TARGETING_VIEW_CHECK);
+
+        isQualifiedForView = this.qualifyView(experiment);
+
+        this.options.debug && console.debug(isQualifiedForView ? debug.TARGETING_VIEW_QUALIFIED : debug.TARGETING_VIEW_NOT_QUALIFIED);
+
+        this.options.debug && console.debug(debug.TARGETING_AUDIENCE_CHECK);
+
+        return isQualifiedForView && isQualifiedForAudience;
+    }
+
+    qualifyView(experiment) {
+        if (experiment.targeting.views.exclude != null && experiment.targeting.views.exclude.length > 0) {
+            for (var i in experiment.targeting.views.exclude) {
+                if (this.env.url.href.match(experiment.targeting.views.exclude[i].toString())) {
+                    return false;
+                }
+            }
+        }
+
+        if(experiment.targeting.views.include.length === 0) {
+            return true;
+        }
+
+        if (experiment.targeting.views.include != null && experiment.targeting.views.include.length > 0) {
+            if (experiment.targeting.views.include[0] === '*' || experiment.targeting.views.include[0] === "\*") {
+                return true;
+            }
+
+            for (var i in experiment.targeting.views.include) {
+                if (this.env.url.href.match(experiment.targeting.views.include[i].toString())) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    shouldForceQueryParams() {
+        if(Object.keys(this.env.visitor.forcedQueryParams).length && this.env.visitor.forcedQueryParams.force) {
+            this.options.debug && console.debug(debug.QUERY_PARAMS);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    getBucketedExperiments(group) {
+        if(this.getMainTrafficBucket() <= group.bucketed.max) {
+            for(let bucket of group.bucketed.buckets) {
+                if(this.getMainTrafficBucket() >= bucket.min && this.getMainTrafficBucket() <= bucket.max) {
+                    return bucket.experiments;
+                }
+            }
+        }
+
+        return [];
     }
 
     /**

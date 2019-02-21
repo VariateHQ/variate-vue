@@ -16,8 +16,8 @@ export default {
                 testingComponentName() {
                     return this.testingId || this.$options._componentTag;
                 },
-                bucket() {
-                    return this.$ab.getTrafficBucket(this.testingComponentName);
+                mainBucket() {
+                    return this.$ab.getMainTrafficBucket();
                 },
                 variation() {
                     if (this.testingComponentName === 'HeroPrimaryCTA') return 1;
