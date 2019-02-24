@@ -1,14 +1,17 @@
 {
-  "name": "testing-tool",
+  "name": "ab-vue",
   "version": "1.0.0",
   "description": "Testing tool for modern applications",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "dependencies": {
+    "ab-engine": "file:~/Sites/AB-Engine"
+  },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/foxted/AB-Package.git"
+    "url": "git+ssh://git@github.com/foxted/AB-Vue.git"
   },
   "keywords": [
     "ab-testing"
@@ -16,7 +19,7 @@
   "author": "Valentin Prugnaud <valentin@whatdafox.com>",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/foxted/AB-Package/issues"
+    "url": "https://github.com/foxted/AB-Vue/issues"
   },
-  "homepage": "https://github.com/foxted/AB-Package#readme"
+  "homepage": "https://github.com/foxted/AB-Vue#readme"
 }
