@@ -1,6 +1,6 @@
 import Testing from 'ab-engine';
-import * as warnings from '../src/lang/warnings';
-import * as debug from '../src/lang/debug';
+import * as debug from './lang/debug';
+import { mapAttributes } from './helpers'
 
 export default {
     install(Vue, options) {
@@ -16,51 +16,41 @@ export default {
                 testingComponentName() {
                     return this.testingId || this.$options._componentTag;
                 },
-                mainBucket() {
+                testingMainBucket() {
                     return this.$ab.getMainTrafficBucket();
                 },
-                variation() {
-                    if (this.testingComponentName === 'HeroPrimaryCTA') return 1;
-                    else if (this.testingComponentName === 'HeroSecondaryCTA') return 2;
-                    return 1; // default = null
-                },
-                attributes() {
-                    return this.$_testing_attributes(this.testingComponentName);
-                },
-            },
-            created() {
-                // if (typeof this.testingComponentName !== 'undefined') {
-                //     options.debug && console.debug(debug.LOAD_COMPONENT_VARIATION, this.testingComponentName, this.variation);
-                //     options.debug && console.debug(debug.LOAD_COMPONENT_BUCKET, this.testingComponentName, this.bucket);
-                // }
-            },
-            methods: {
-                $_testing_attributes(componentName) {
-                    // if (typeof componentName === 'undefined') {
-                    //     throw new ReferenceError(warnings.COMPONENT_NOT_DEFINED);
-                    // }
-                    //
-                    // if (this.variation !== null) {
-                    //     let variations = this.$ab.config.components[componentName].variations;
-                    //
-                    //     return variations[this.variation].attributes;
-                    // }
+                testingComponent() {
+                    if (typeof this.$ab.components[this.testingComponentName] !== 'undefined') {
+                        return this.$ab.components[this.testingComponentName];
+                    }
 
                     return {};
                 },
-            }
+                testingBucket() {
+                    return this.testingComponent.bucket;
+                },
+                testingExperimentId() {
+                    return this.testingComponent.experiment_id;
+                },
+                testingVariationId() {
+                    return this.testingComponent.variation_id;
+                },
+                testingAttributes() {
+                    return this.testingComponent.attributes || {};
+                },
+            },
+            created() {
+                if (typeof this.testingExperimentId !== 'undefined' && typeof this.testingVariationId !== 'undefined') {
+                    options.debug && console.groupCollapsed(debug.LOAD_COMPONENT, this.testingComponentName);
+                    options.debug && console.debug(debug.LOAD_COMPONENT_EXPERIMENT, this.testingExperimentId);
+                    options.debug && console.debug(debug.LOAD_COMPONENT_BUCKET, this.testingBucket);
+                    options.debug && console.debug(debug.LOAD_COMPONENT_VARIATION, this.testingVariationId);
+                    options.debug && console.groupEnd();
+                }
+            },
         });
 
-        console.log(Vue.prototype);
-        if(Vue.prototype.$router) {
-            Vue.prototype.$router.afterEach(() => {
-                console.log('After each route');
-            })
-        } else {
-            console.log('All the time');
-            this.$ab.initialize();
-        }
-
         Vue.prototype.$ab = new Testing(options);
-    }
+    },
+    mapAttributes
 };
