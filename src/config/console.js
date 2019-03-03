@@ -1,6 +1,6 @@
 import pjson from '../../package.json';
 
-export const name = 'Variate Engine';
+export const name = 'Variate Vue';
 
 export const version = pjson.version;
 
