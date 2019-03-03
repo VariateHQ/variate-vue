@@ -1,4 +1,4 @@
-import Testing from 'ab-engine';
+import Testing from 'variate-engine';
 import * as debug from './lang/debug';
 import { mapAttributes } from './helpers'
 

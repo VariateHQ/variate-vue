@@ -1,25 +1,26 @@
 {
-  "name": "ab-vue",
+  "name": "variate-vue",
   "version": "1.0.0",
-  "description": "Testing tool for modern applications",
+  "description": "Variate Vue plugin",
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "ab-engine": "file:~/Sites/AB-Engine"
+    "variate-engine": "file:~/Sites/Variate-Engine"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/foxted/AB-Vue.git"
+    "url": "git+ssh://git@github.com/foxted/Variate-Vue.git"
   },
   "keywords": [
-    "ab-testing"
+    "ab-testing",
+    "variate"
   ],
   "author": "Valentin Prugnaud <valentin@whatdafox.com>",
   "license": "SEE LICENSE IN LICENSE",
   "bugs": {
-    "url": "https://github.com/foxted/AB-Vue/issues"
+    "url": "https://github.com/foxted/Variate-Vue/issues"
   },
-  "homepage": "https://github.com/foxted/AB-Vue#readme"
+  "homepage": "https://github.com/foxted/Variate-Vue#readme"
 }
