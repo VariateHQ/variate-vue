@@ -1,9 +1,11 @@
 import Testing from 'variate-engine';
+import version from './lang/version';
 import * as debug from './lang/debug';
 import { mapAttributes } from './helpers';
 
 export default {
     install(Vue, options) {
+        version.show();
         // 3. inject some component options
         Vue.mixin({
             props: {
