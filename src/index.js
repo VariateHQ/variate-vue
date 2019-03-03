@@ -1,6 +1,6 @@
 import Testing from 'variate-engine';
 import * as debug from './lang/debug';
-import { mapAttributes } from './helpers'
+import { mapAttributes } from './helpers';
 
 export default {
     install(Vue, options) {
@@ -41,7 +41,7 @@ export default {
             },
             created() {
                 if (typeof this.testingExperimentId !== 'undefined' && typeof this.testingVariationId !== 'undefined') {
-                    options.debug && console.groupCollapsed(debug.LOAD_COMPONENT, this.testingComponentName);
+                    options.debug && debug.group(debug.LOAD_COMPONENT, this.testingComponentName);
                     options.debug && console.debug(debug.LOAD_COMPONENT_EXPERIMENT, this.testingExperimentId);
                     options.debug && console.debug(debug.LOAD_COMPONENT_BUCKET, this.testingBucket);
                     options.debug && console.debug(debug.LOAD_COMPONENT_VARIATION, this.testingVariationId);
