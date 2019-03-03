@@ -5,7 +5,7 @@ import { mapAttributes } from './helpers';
 
 export default {
     install(Vue, options) {
-        version.show();
+        options.debug && version.show();
         // 3. inject some component options
         Vue.mixin({
             props: {
