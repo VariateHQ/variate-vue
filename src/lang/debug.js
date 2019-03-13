@@ -2,9 +2,7 @@ import { name, styles } from '../config/console';
 
 // Components
 export const LOAD_COMPONENT= `[COMPONENT] %s`;
-export const LOAD_COMPONENT_EXPERIMENT = `Experiment %s`;
-export const LOAD_COMPONENT_VARIATION = `Variation %s`;
-export const LOAD_COMPONENT_BUCKET = `Bucket: %s`;
+export const LOAD_COMPONENT_EXPERIMENTS = `Running experiments:`;
 
 // Utilities
 export const log = (message, ...params) => {

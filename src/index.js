@@ -31,22 +31,18 @@ export default {
                 testingBucket() {
                     return this.testingComponent.bucket;
                 },
-                testingExperimentId() {
-                    return this.testingComponent.experiment_id;
-                },
-                testingVariationId() {
-                    return this.testingComponent.variation_id;
+                testingExperiments() {
+                    return this.testingComponent.experiments;
                 },
                 testingAttributes() {
                     return this.testingComponent.attributes || {};
                 },
             },
             created() {
-                if (typeof this.testingExperimentId !== 'undefined' && typeof this.testingVariationId !== 'undefined') {
+                if (typeof this.testingExperiments !== 'undefined') {
                     options.debug && debug.group(debug.LOAD_COMPONENT, this.testingComponentName);
-                    options.debug && console.debug(debug.LOAD_COMPONENT_EXPERIMENT, this.testingExperimentId);
-                    options.debug && console.debug(debug.LOAD_COMPONENT_BUCKET, this.testingBucket);
-                    options.debug && console.debug(debug.LOAD_COMPONENT_VARIATION, this.testingVariationId);
+                    options.debug && console.debug(debug.LOAD_COMPONENT_EXPERIMENTS);
+                    options.debug && console.debug(this.testingExperiments);
                     options.debug && console.groupEnd();
                 }
             },
