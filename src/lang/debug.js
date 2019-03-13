@@ -6,7 +6,7 @@ export const LOAD_COMPONENT_EXPERIMENTS = `Running experiments:`;
 
 // Utilities
 export const log = (message, ...params) => {
-    console.debug(
+    console.log(
         `%c ${name} %c DEBUG %c %s`,
         styles.brand,
         styles.type,

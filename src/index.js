@@ -1,4 +1,4 @@
-import Testing from 'variate-engine';
+import Testing from '@variate/engine';
 import version from './lang/version';
 import * as debug from './lang/debug';
 import { mapAttributes } from './helpers';
@@ -41,8 +41,8 @@ export default {
             created() {
                 if (typeof this.testingExperiments !== 'undefined') {
                     options.debug && debug.group(debug.LOAD_COMPONENT, this.testingComponentName);
-                    options.debug && console.debug(debug.LOAD_COMPONENT_EXPERIMENTS);
-                    options.debug && console.debug(this.testingExperiments);
+                    options.debug && console.log(debug.LOAD_COMPONENT_EXPERIMENTS);
+                    options.debug && console.log(this.testingExperiments);
                     options.debug && console.groupEnd();
                 }
             },

@@ -1,5 +1,5 @@
 {
-  "name": "variate-vue",
+  "name": "@variate/vue",
   "version": "1.0.0",
   "description": "Variate Vue plugin",
   "main": "src/index.js",
@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "variate-engine": "file:~/Sites/Variate-Engine"
+    "@variate/engine": "file:~/Sites/Variate-Engine"
   },
   "repository": {
     "type": "git",
