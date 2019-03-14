@@ -19,11 +19,11 @@ export default {
                     return this.testingId || this.$options._componentTag;
                 },
                 testingMainBucket() {
-                    return this.$ab.getMainTrafficBucket();
+                    return this.$variate.getMainTrafficBucket();
                 },
                 testingComponent() {
-                    if (typeof this.$ab.components[this.testingComponentName] !== 'undefined') {
-                        return this.$ab.components[this.testingComponentName];
+                    if (typeof this.$variate.components[this.testingComponentName] !== 'undefined') {
+                        return this.$variate.components[this.testingComponentName];
                     }
 
                     return {};
@@ -48,7 +48,7 @@ export default {
             },
         });
 
-        Vue.prototype.$ab = new Testing(options);
+        Vue.prototype.$variate = new Testing(options);
     },
     mapAttributes
 };
