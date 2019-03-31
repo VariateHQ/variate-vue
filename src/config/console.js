@@ -1,8 +1,4 @@
-import pjson from '../../package.json';
-
 export const name = 'Variate Vue';
-
-export const version = pjson.version;
 
 export const styles = {
     brand: "background: rgba(143, 127, 224, 1); color: white; font-weight: 500; border-radius: 3px 0 0 3px; padding: 1px 2px;",

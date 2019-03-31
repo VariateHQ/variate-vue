@@ -1,17 +1,16 @@
-import * as errors from '../lang/errors';
+import * as errors from './lang/errors';
 
 export const mapAttributes = (attributes) => {
+    console.log('Mapping attributes');
     let computed = {};
 
     if (typeof attributes !== 'object') {
         throw new TypeError(errors.REQUIRED_OBJECT);
     }
 
-    console.log(this);
-
     normalizeMap(attributes).forEach(({ key, value }) => {
         computed[key] = () => {
-            return this.testingAttributes[key] || value;
+            return this.variateAttributes[key] || value;
         };
     });
 

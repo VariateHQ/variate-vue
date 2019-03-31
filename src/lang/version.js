@@ -1,9 +1,9 @@
-import { name, version, styles } from '../config/console';
+import { name, styles } from '../config/console';
 
 export default {
     show: function() {
         console.log(
-            `%c ${name} %c ${version} `,
+            `%c ${name} %c __VERSION__ `,
             styles.brand,
             styles.type
         );

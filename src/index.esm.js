@@ -5,3 +5,8 @@ export default {
     install,
     mapAttributes,
 };
+
+export {
+    install,
+    mapAttributes,
+}
