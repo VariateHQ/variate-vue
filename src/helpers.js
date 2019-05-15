@@ -1,28 +1,61 @@
-import * as errors from './lang/errors';
+export const mapStyles = normalizeNamespace((namespace, map) => {
+    let styles = namespace || 'styles';
+    let response = {};
+
+    if(Array.isArray(map)) {
+        response[styles] = normalizeMap(map).map(({ key, val }) => {
+            const property = key.split(/(?=[A-Z])/).map((value) => value.toLowerCase()).join('-');
+            return `${property}: ${val}`;
+        });
+
+        return response;
+    }
+
+    response[styles] =  function() {
+        return normalizeMap(map).map(({ key, val }) => {
+            const property = key.split(/(?=[A-Z])/).map((value) => value.toLowerCase()).join('-');
+            return `${property}: ${val.replace(/%s/g, () => this[key] || key )}`;
+        }).join('; ');
+    };
+
+    return response;
+});
 
 /**
  *
  * @param attributes
  */
 export const mapAttributes = (attributes) => {
-    console.log('Mapping attributes');
-    console.log(attributes);
     let computed = {};
 
-    normalizeMap(attributes).forEach(({ key, value }) => {
+    normalizeMap(attributes).forEach(({ key, val }) => {
         computed[key] = function() {
             if(!this.variateAttributes) {
                 return null;
             }
 
-            return this.variateAttributes[key] || value;
+            return this.variateAttributes[key] || this.variateAttributes[val];
         };
     });
 
-    console.log(computed);
-
     return computed;
 };
+
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+function normalizeNamespace (fn) {
+    return (namespace, map) => {
+        if (typeof namespace !== 'string') {
+            map = namespace
+            namespace = ''
+        }
+
+        return fn(namespace, map)
+    }
+}
 
 /**
  * Normalize the map

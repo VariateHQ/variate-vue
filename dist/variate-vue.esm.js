@@ -82,30 +82,76 @@ function install(Vue, options) {
   Vue.prototype.$variate = new Variate(options);
 }
 
+var mapStyles = normalizeNamespace(function (namespace, map) {
+  var styles = namespace || 'styles';
+  var response = {};
+
+  if (Array.isArray(map)) {
+    response[styles] = normalizeMap(map).map(function (_ref) {
+      var key = _ref.key,
+          val = _ref.val;
+      var property = key.split(/(?=[A-Z])/).map(function (value) {
+        return value.toLowerCase();
+      }).join('-');
+      return "".concat(property, ": ").concat(val);
+    });
+    return response;
+  }
+
+  response[styles] = function () {
+    var _this = this;
+
+    return normalizeMap(map).map(function (_ref2) {
+      var key = _ref2.key,
+          val = _ref2.val;
+      var property = key.split(/(?=[A-Z])/).map(function (value) {
+        return value.toLowerCase();
+      }).join('-');
+      return "".concat(property, ": ").concat(val.replace(/%s/g, function () {
+        return _this[key] || key;
+      }));
+    }).join('; ');
+  };
+
+  return response;
+});
 /**
  *
  * @param attributes
  */
 
 var mapAttributes = function mapAttributes(attributes) {
-  console.log('Mapping attributes');
-  console.log(attributes);
   var computed = {};
-  normalizeMap(attributes).forEach(function (_ref) {
-    var key = _ref.key,
-        value = _ref.value;
+  normalizeMap(attributes).forEach(function (_ref3) {
+    var key = _ref3.key,
+        val = _ref3.val;
 
     computed[key] = function () {
       if (!this.variateAttributes) {
         return null;
       }
 
-      return this.variateAttributes[key] || value;
+      return this.variateAttributes[key] || this.variateAttributes[val];
     };
   });
-  console.log(computed);
   return computed;
 };
+/**
+ * Return a function expect two param contains namespace and map. it will normalize the namespace and then the param's function will handle the new namespace and the map.
+ * @param {Function} fn
+ * @return {Function}
+ */
+
+function normalizeNamespace(fn) {
+  return function (namespace, map) {
+    if (typeof namespace !== 'string') {
+      map = namespace;
+      namespace = '';
+    }
+
+    return fn(namespace, map);
+  };
+}
 /**
  * Normalize the map
  * normalizeMap([1, 2, 3]) => [ { key: 1, val: 1 }, { key: 2, val: 2 }, { key: 3, val: 3 } ]
@@ -113,6 +159,7 @@ var mapAttributes = function mapAttributes(attributes) {
  * @param {Array|Object} map
  * @return {Object}
  */
+
 
 function normalizeMap(map) {
   return Array.isArray(map) ? map.map(function (key) {
@@ -130,8 +177,9 @@ function normalizeMap(map) {
 
 var index = {
   install: install,
-  mapAttributes: mapAttributes
+  mapAttributes: mapAttributes,
+  mapStyles: mapStyles
 };
 
 export default index;
-export { mapAttributes };
+export { mapAttributes, mapStyles };

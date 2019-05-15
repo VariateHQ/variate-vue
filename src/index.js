@@ -1,11 +1,13 @@
 import { install } from './variate';
-import { mapAttributes } from './helpers';
+import { mapAttributes, mapStyles } from './helpers';
 
 export {
     mapAttributes,
+    mapStyles
 }
 
 export default {
     install,
     mapAttributes,
+    mapStyles,
 }
