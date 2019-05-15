@@ -1,5 +1,9 @@
 import * as errors from './lang/errors';
 
+/**
+ *
+ * @param attributes
+ */
 export const mapAttributes = (attributes) => {
     console.log('Mapping attributes');
     let computed = {};
@@ -29,3 +33,5 @@ function normalizeMap(map) {
         ? map.map(key => ({ key, val: key }))
         : Object.keys(map).map(key => ({ key, val: map[key] }));
 }
+
+export default mapAttributes;

@@ -1,7 +1,9 @@
 import Vue from 'vue';
-import buble from 'rollup-plugin-buble';
 import { uglify } from 'rollup-plugin-uglify';
-const replace = require('rollup-plugin-replace');
+import resolve from 'rollup-plugin-node-resolve';
+import replace from 'rollup-plugin-replace';
+import babel from 'rollup-plugin-babel';
+import commonjs from 'rollup-plugin-commonjs';
 const version = process.env.VERSION || require('./package.json').version;
 const banner =
 `/**
@@ -11,7 +13,7 @@ const banner =
  */`;
 
 export default [{
-    input: 'src/index.js',
+    input:  'src/index.js',
     output: [
         {
             banner,
@@ -22,7 +24,8 @@ export default [{
             env: 'development',
             globals: {
                 '@variate/engine': 'Variate'
-            }
+            },
+            exports: 'named',
         },
         {
             input: 'src/index.js',
@@ -35,25 +38,38 @@ export default [{
             ],
             globals: {
                 '@variate/engine': 'Variate'
-            }
+            },
+            exports: 'named',
         },
         {
             banner,
             input: 'src/index.js',
             file: 'dist/variate-vue.common.js',
-            format: 'cjs'
+            format: 'cjs',
+            exports: 'named',
         },
         {
             banner,
-            input: 'src/index.esm.js',
+            input: 'src/index.js',
             file: 'dist/variate-vue.esm.js',
-            format: 'es'
+            format: 'es',
+            exports: 'named',
         }
     ],
     context: Vue,
     external: [ '@variate/engine' ],
     plugins: [
-        buble(),
+        resolve(),
+        commonjs(
+            {
+                namedExports: {
+                    'src/index.js': ['mapAttributes']
+                }
+            },
+        ),
+        babel({
+            exclude: 'node_modules/**' // only transpile our source code
+        }),
         replace({
             __VERSION__: version
         }),
