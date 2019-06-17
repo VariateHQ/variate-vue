@@ -38,7 +38,7 @@ export function install(Vue, options) {
         },
         created() {
             if (typeof this.variateExperiments !== 'undefined') {
-                options.debug && debug.group(debug.LOAD_COMPONENT, this.variateComponentName);
+                options.debug && console.groupCollapsed(debug.LOAD_COMPONENT, this.variateComponentName);
                 options.debug && console.log(debug.LOAD_COMPONENT_EXPERIMENTS);
                 options.debug && console.log(this.variateExperiments);
                 options.debug && console.groupEnd();

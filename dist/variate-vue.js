@@ -26,19 +26,9 @@
       }
     };
 
+    // Components
     var LOAD_COMPONENT = "[COMPONENT] %s";
-    var LOAD_COMPONENT_EXPERIMENTS = "Running experiments:"; // Utilities
-    function group() {
-      var _console2;
-
-      var message = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '';
-
-      for (var _len2 = arguments.length, params = new Array(_len2 > 1 ? _len2 - 1 : 0), _key2 = 1; _key2 < _len2; _key2++) {
-        params[_key2 - 1] = arguments[_key2];
-      }
-
-      (_console2 = console).groupCollapsed.apply(_console2, ["%c ".concat(name, " %c DEBUG %c ").concat(message), styles.brand, styles.type, styles.message].concat(params));
-    }
+    var LOAD_COMPONENT_EXPERIMENTS = "Running experiments:";
 
     function install(Vue, options) {
       options.debug && version.show(); // 3. inject some component options
@@ -78,7 +68,7 @@
         },
         created: function created() {
           if (typeof this.variateExperiments !== 'undefined') {
-            options.debug && group(LOAD_COMPONENT, this.variateComponentName);
+            options.debug && console.groupCollapsed(LOAD_COMPONENT, this.variateComponentName);
             options.debug && console.log(LOAD_COMPONENT_EXPERIMENTS);
             options.debug && console.log(this.variateExperiments);
             options.debug && console.groupEnd();
@@ -194,3 +184,4 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
+//# sourceMappingURL=variate-vue.js.map
