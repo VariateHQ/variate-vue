@@ -1,6 +1,6 @@
 {
   "name": "@variate/vue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Variate Vue plugin",
   "main": "dist/variate-vue.common.js",
   "module": "dist/variate-vue.esm.js",
@@ -18,7 +18,7 @@
     "dist"
   ],
   "dependencies": {
-    "@variate/engine": "^1.0.1",
+    "@variate/engine": "^1.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
