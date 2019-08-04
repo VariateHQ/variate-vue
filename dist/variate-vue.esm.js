@@ -31,7 +31,7 @@ function install(Vue, options) {
     props: {
       variateId: {
         type: String,
-        default: function _default() {
+        "default": function _default() {
           return null;
         }
       }
@@ -173,4 +173,3 @@ var index = {
 
 export default index;
 export { mapAttributes, mapStyles };
-//# sourceMappingURL=variate-vue.esm.js.map

@@ -10,42 +10,42 @@
     "dev": "npm run clean && rollup -wm -c rollup.config.js",
     "build": "npm run clean && rollup -c rollup.config.js --exports=named",
     "clean": "rimraf dist/",
-    "prepublish": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
     "dist"
   ],
   "dependencies": {
-    "@variate/engine": "file:~/Sites/Variate-Engine",
+    "@variate/engine": "^1.0.1",
     "vue": "^2.6.10"
   },
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "rimraf": "^2.6.3",
-    "rollup": "^1.7.4",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-buble": "^0.19.6",
-    "rollup-plugin-commonjs": "^9.3.4",
+    "rollup": "^1.18.0",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.0.2",
     "rollup-plugin-json": "^4.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
-    "rollup-plugin-replace": "^2.1.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-uglify": "^6.0.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/foxted/Variate-Vue.git"
+    "url": "git+ssh://git@github.com/variateapp/variate-vue.git"
   },
   "keywords": [
     "ab-testing",
     "variate"
   ],
   "author": "Valentin Prugnaud <valentin@whatdafox.com>",
-  "license": "SEE LICENSE IN LICENSE",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/foxted/Variate-Vue/issues"
+    "url": "https://github.com/variateapp/variate-vue/issues"
   },
-  "homepage": "https://github.com/foxted/Variate-Vue#readme"
+  "homepage": "https://github.com/variateapp/variate-vue#README.md"
 }

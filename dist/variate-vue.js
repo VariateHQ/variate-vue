@@ -37,7 +37,7 @@
         props: {
           variateId: {
             type: String,
-            default: function _default() {
+            "default": function _default() {
               return null;
             }
           }
@@ -184,4 +184,3 @@
     Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
-//# sourceMappingURL=variate-vue.js.map

@@ -37,7 +37,7 @@ function install(Vue, options) {
     props: {
       variateId: {
         type: String,
-        default: function _default() {
+        "default": function _default() {
           return null;
         }
       }
@@ -180,4 +180,3 @@ var index = {
 exports.default = index;
 exports.mapAttributes = mapAttributes;
 exports.mapStyles = mapStyles;
-//# sourceMappingURL=variate-vue.common.js.map
