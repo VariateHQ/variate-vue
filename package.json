@@ -11,6 +11,7 @@
     "build": "npm run clean && rollup -c rollup.config.js --exports=named",
     "clean": "rimraf dist/",
     "prepublishOnly": "npm run clean && npm run build",
+    "publish": "npm publish --access public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "files": [
