@@ -1,5 +1,5 @@
 /**
- * Variate Vue v1.0.0
+ * Variate Vue v1.0.1
  * (c) 2019 Saasquatch Inc.
  * @license MIT
  */
@@ -16,7 +16,7 @@ var styles = {
 
 var version = {
   show: function show() {
-    console.log("%c ".concat(name, " %c 1.0.0 "), styles.brand, styles.type);
+    console.log("%c ".concat(name, " %c 1.0.1 "), styles.brand, styles.type);
   }
 };
 
