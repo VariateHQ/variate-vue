@@ -34,7 +34,7 @@ export const mapAttributes = (attributes) => {
                 return null;
             }
 
-            return this.variateAttributes[key] || this.variateAttributes[val];
+            return this.variateAttributes[key] || (val || '');
         };
     });
 
