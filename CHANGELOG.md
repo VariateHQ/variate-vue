@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.3.0](https://github.com/variateapp/variate-vue/compare/v1.2.0...v1.3.0) (2019-12-05)
+
+
+### Features
+
+* update to variate-engine 1.2.0 ([017f25c](https://github.com/variateapp/variate-vue/commit/017f25cedfa746766413d47c4b40128707d37726))
+
 ## [1.2.0](https://github.com/variateapp/variate-vue/compare/v1.1.1...v1.2.0) (2019-12-05)
 
 
