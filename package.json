@@ -2,6 +2,8 @@
   "name": "@variate/vue",
   "version": "1.2.0",
   "description": "Variate Vue plugin",
+  "author": "Valentin Prugnaud <valentin.prugnaud@variate.ca>",
+  "license": "BSL 1.1",
   "main": "dist/variate-vue.common.js",
   "module": "dist/variate-vue.esm.js",
   "unpkg": "dist/variate-vue.js",
@@ -48,8 +50,6 @@
     "ab-testing",
     "variate"
   ],
-  "author": "Valentin Prugnaud <valentin@whatdafox.com>",
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/variateapp/variate-vue/issues"
   },
