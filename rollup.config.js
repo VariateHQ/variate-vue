@@ -8,7 +8,7 @@ const version = process.env.VERSION || require('./package.json').version;
 const banner =
 `/**
  * Variate Vue v${version}
- * (c) ${new Date().getFullYear()} Saasquatch Inc.
+ * (c) ${new Date().getFullYear()} Variate Inc.
  * @license MIT
  */`;
 
