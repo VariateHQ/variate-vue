@@ -14,6 +14,7 @@ export function install(Vue, options) {
         },
         computed: {
             variateComponentName() {
+                if(this.$options.variateId) return this.$options.variateId;
                 return this.variateId || this.$options._componentTag;
             },
             variateMainBucket() {
@@ -46,5 +47,9 @@ export function install(Vue, options) {
         },
     });
 
-    Vue.prototype.$variate = new Variate(options);
+    const variate = new Variate(options);
+
+    Vue.prototype.$variate = variate;
+
+    return variate;
 }
