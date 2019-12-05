@@ -20,7 +20,7 @@
     "dist"
   ],
   "dependencies": {
-    "@variate/engine": "^1.1",
+    "@variate/engine": "^1.2.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
