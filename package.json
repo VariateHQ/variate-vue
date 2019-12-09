@@ -10,8 +10,8 @@
   "jsdelivr": "dist/variate-vue.js",
   "scripts": {
     "dev": "npm run clean && rollup -wm -c rollup.config.js",
-    "build": "npm run clean && rollup -c rollup.config.js --exports=named",
     "clean": "rimraf dist/",
+    "build": "rollup -c rollup.config.js --exports=named",
     "release": "standard-version",
     "test": "jest"
   },
