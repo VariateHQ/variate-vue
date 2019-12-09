@@ -1,20 +1,17 @@
+import * as errors from './lang/error';
+
 export const mapStyles = normalizeNamespace((namespace, map) => {
     let styles = namespace || 'styles';
     let response = {};
 
-    if(Array.isArray(map)) {
-        response[styles] = normalizeMap(map).map(({ key, val }) => {
-            const property = key.split(/(?=[A-Z])/).map((value) => value.toLowerCase()).join('-');
-            return `${property}: ${val}`;
-        });
-
-        return response;
+    if (typeof map !== 'object' || Array.isArray(map)) {
+        throw new Error(errors.MAP_STYLES_WRONG_PARAMETER);
     }
 
-    response[styles] =  function() {
+    response[styles] = function () {
         return normalizeMap(map).map(({ key, val }) => {
             const property = key.split(/(?=[A-Z])/).map((value) => value.toLowerCase()).join('-');
-            return `${property}: ${val.replace(/%s/g, () => this[key] || key )}`;
+            return `${property}: ${val.replace(/%s/g, () => this[key] || key)}`;
         }).join('; ');
     };
 
@@ -23,18 +20,22 @@ export const mapStyles = normalizeNamespace((namespace, map) => {
 
 /**
  *
- * @param attributes
+ * @param variables
  */
-export const mapAttributes = (attributes) => {
+export const mapVariables = (variables) => {
     let computed = {};
 
-    normalizeMap(attributes).forEach(({ key, val }) => {
-        computed[key] = function() {
-            if(!this.variateAttributes) {
-                return null;
+    if (typeof variables !== 'object') {
+        throw new Error(errors.MAP_VARIABLES_WRONG_PARAMETER);
+    }
+
+    normalizeMap(variables).forEach(({ key, val }) => {
+        computed[key] = function () {
+            if(!this.$variate || !this.variateVariables) {
+                throw new Error(errors.VARIATE_MISSING);
             }
 
-            return this.variateAttributes[key] || (val || '');
+            return this.variateVariables[key] || val;
         };
     });
 
@@ -46,15 +47,15 @@ export const mapAttributes = (attributes) => {
  * @param {Function} fn
  * @return {Function}
  */
-function normalizeNamespace (fn) {
+function normalizeNamespace(fn) {
     return (namespace, map) => {
         if (typeof namespace !== 'string') {
-            map = namespace
-            namespace = ''
+            map = namespace;
+            namespace = '';
         }
 
-        return fn(namespace, map)
-    }
+        return fn(namespace, map);
+    };
 }
 
 /**
@@ -66,8 +67,6 @@ function normalizeNamespace (fn) {
  */
 function normalizeMap(map) {
     return Array.isArray(map)
-        ? map.map(key => ({ key, val: key }))
+        ? map.map(key => ({ key, val: undefined }))
         : Object.keys(map).map(key => ({ key, val: map[key] }));
 }
-
-export default mapAttributes;

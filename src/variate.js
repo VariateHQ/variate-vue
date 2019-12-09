@@ -28,17 +28,17 @@ export function install(Vue, options) {
                 return {};
             },
             variateBucket() {
-                return this.variateComponent.bucket;
+                return this.variateComponent.bucket || 0;
             },
             variateExperiments() {
-                return this.variateComponent.experiments;
+                return this.variateComponent.experiments || [];
             },
-            variateAttributes() {
-                return this.variateComponent.attributes || {};
+            variateVariables() {
+                return this.variateComponent.variables || {};
             },
         },
         created() {
-            if (typeof this.variateExperiments !== 'undefined') {
+            if (Object.keys(this.variateComponent).length > 0 && typeof this.variateExperiments !== 'undefined') {
                 options.debug && console.groupCollapsed(debug.LOAD_COMPONENT, this.variateComponentName);
                 options.debug && console.log(debug.LOAD_COMPONENT_EXPERIMENTS);
                 options.debug && console.log(this.variateExperiments);
