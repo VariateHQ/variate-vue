@@ -13,7 +13,7 @@
     "build": "npm run clean && rollup -c rollup.config.js --exports=named",
     "clean": "rimraf dist/",
     "release": "standard-version",
-    "prepublishOnly": "npm run clean && npm run build",
+    "prepublishOnly": "npm run clean",
     "test": "jest"
   },
   "files": [
