@@ -15,9 +15,6 @@
     "release": "standard-version",
     "test": "jest"
   },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@variate/engine": "^2.0.3",
     "vue": "^2.6.10"

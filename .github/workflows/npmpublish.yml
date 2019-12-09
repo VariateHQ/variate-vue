@@ -2,9 +2,8 @@ name: Node.js Package
 
 on:
   push:
-    master:
-#    tags:
-#      - '*'
+    tags:
+      - '*'
 
 jobs:
   publish-npm:
@@ -19,7 +18,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm run test
-      - run: ls
-#      - run: npm publish --access public
+      - run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
