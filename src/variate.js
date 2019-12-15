@@ -17,9 +17,6 @@ export function install(Vue, options) {
                 if(this.$options.variateId) return this.$options.variateId;
                 return this.variateId || this.$options._componentTag;
             },
-            variateMainBucket() {
-                return this.$variate.getMainTrafficBucket();
-            },
             variateComponent() {
                 if (typeof this.$variate.components[this.variateComponentName] !== 'undefined') {
                     return this.$variate.components[this.variateComponentName];
@@ -30,18 +27,18 @@ export function install(Vue, options) {
             variateBucket() {
                 return this.variateComponent.bucket || 0;
             },
-            variateExperiments() {
-                return this.variateComponent.experiments || [];
-            },
             variateVariables() {
                 return this.variateComponent.variables || {};
             },
         },
         created() {
-            if (Object.keys(this.variateComponent).length > 0 && typeof this.variateExperiments !== 'undefined') {
+            if (Object.keys(this.variateComponent).length > 0) {
                 options.debug && console.groupCollapsed(debug.LOAD_COMPONENT, this.variateComponentName);
-                options.debug && console.log(debug.LOAD_COMPONENT_EXPERIMENTS);
-                options.debug && console.log(this.variateExperiments);
+                options.debug && console.log(
+                    debug.VIEW_EXPERIMENT,
+                    `https://variate.ca/sites/${this.variateComponent.siteId}/experiments/${this.variateComponent.experimentId}`
+                );
+                options.debug && console.log(this.variateComponent);
                 options.debug && console.groupEnd();
             }
         },

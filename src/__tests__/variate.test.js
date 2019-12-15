@@ -16,14 +16,10 @@ const tests = () => {
         const computedProperties = vm.$options.computed;
         expect(computedProperties.variateComponentName).toBeDefined();
         expect(vm.variateComponentName).toBe('App');
-        expect(computedProperties.variateMainBucket).toBeDefined();
-        expect(typeof vm.variateMainBucket).toBe('number');
         expect(computedProperties.variateComponent).toBeDefined();
         expect(typeof vm.variateComponent).toBe('object');
         expect(computedProperties.variateBucket).toBeDefined();
         expect(typeof vm.variateBucket).toBe('number');
-        expect(computedProperties.variateExperiments).toBeDefined();
-        expect(Array.isArray(vm.variateExperiments)).toBeTruthy();
         expect(computedProperties.variateVariables).toBeDefined();
         expect(typeof vm.variateVariables).toBe('object');
     });
@@ -41,14 +37,10 @@ const tests = () => {
         const computedProperties = vm.$options.computed;
         expect(computedProperties.variateComponentName).toBeDefined();
         expect(vm.variateComponentName).toBe('Hero');
-        expect(computedProperties.variateMainBucket).toBeDefined();
-        expect(typeof vm.variateMainBucket).toBe('number');
         expect(computedProperties.variateComponent).toBeDefined();
         expect(typeof vm.variateComponent).toBe('object');
         expect(computedProperties.variateBucket).toBeDefined();
         expect(typeof vm.variateBucket).toBe('number');
-        expect(computedProperties.variateExperiments).toBeDefined();
-        expect(Array.isArray(vm.variateExperiments)).toBeTruthy();
         expect(computedProperties.variateVariables).toBeDefined();
         expect(typeof vm.variateVariables).toBe('object');
     });
@@ -78,7 +70,7 @@ const tests = () => {
         expect(vm.$variate.env.targeting.state).toBeDefined();
         expect(vm.$variate.env.targeting.state).toBe('BC');
     });
-    it('It can get the component experiments and variable if Variate is initialized', () => {
+    it('It can get the component information if Variate is initialized', () => {
         const vm = new Vue({
             variateId: 'Hero',
             render() {
@@ -104,12 +96,10 @@ const tests = () => {
         expect(vm.$options.computed.variateComponent.call(vm).id).toBeDefined();
         expect(vm.$options.computed.variateComponent.call(vm).variables).toBeDefined();
         expect(vm.$options.computed.variateComponent.call(vm).variables.backgroundImage).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments[0]).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments[0].experiment).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments[0].variation).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments[0].bucket).toBeDefined();
-        expect(vm.$options.computed.variateComponent.call(vm).experiments[0].variables).toBeDefined();
+        expect(vm.$options.computed.variateComponent.call(vm).bucket).toBeDefined();
+        expect(vm.$options.computed.variateComponent.call(vm).variationId).toBeDefined();
+        expect(vm.$options.computed.variateComponent.call(vm).experimentId).toBeDefined();
+        expect(vm.$options.computed.variateComponent.call(vm).siteId).toBeDefined();
     });
 };
 
