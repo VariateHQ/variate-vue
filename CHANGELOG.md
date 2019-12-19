@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.0.0](https://github.com/variateapp/variate-vue/compare/v1.4.6...v2.0.0) (2019-12-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **engine:** https://github.com/VariateApp/variate-engine/pull/12
+
+### Features
+
+* remove reference to experiments and main bucket ([8be9f48](https://github.com/variateapp/variate-vue/commit/8be9f482e54b47f3fb701a22210802d9edf1fa27))
+
+
+### improvement
+
+* **engine:** update engine ([337275a](https://github.com/variateapp/variate-vue/commit/337275aeebd23e41d5b8b191b9345a81e6a53b2b))
+
 ### [1.4.6](https://github.com/variateapp/variate-vue/compare/v1.4.5...v1.4.6) (2019-12-09)
 
 ### [1.4.5](https://github.com/variateapp/variate-vue/compare/v1.4.4...v1.4.5) (2019-12-09)
