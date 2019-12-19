@@ -1,13 +1,10 @@
-name: Node.js Package
+name: Build and test
 
-on:
-  push:
-    tags:
-      - '*'
+on: push
 
 jobs:
-  publish-npm:
-    name: "Build, test & publish"
+  build:
+    name: "Build, lint & test"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -17,7 +14,5 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
+      - run: npm run lint
       - run: npm run test
-      - run: npm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
