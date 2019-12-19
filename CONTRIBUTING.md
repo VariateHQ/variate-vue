@@ -31,7 +31,7 @@ We use GitHub issues to track public bugs. Report a bug by [opening a new issue]
 
 ## Use a consistent coding style
 
-This repository is not using any styling convention yet, but it will come very soon.
+This repository is using `eslint` to enforce styling convention. Refer to the [`.eslintrc`](https://github.com/VariateApp/variate-vue/blob/master/.eslintrc) file for more information.
 
 ## License
 

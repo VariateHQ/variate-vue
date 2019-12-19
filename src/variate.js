@@ -48,5 +48,5 @@ export function install(Vue, options) {
 
     Vue.prototype.$variate = variate;
 
-    return variate;
+    return variate
 }
