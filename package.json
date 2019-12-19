@@ -16,7 +16,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@variate/engine": "^2.0.3",
+    "@variate/engine": "^3.0.0",
     "vue": "^2.6.10"
   },
   "devDependencies": {
