@@ -17,25 +17,25 @@
     "test": "jest"
   },
   "dependencies": {
-    "@variate/engine": "^3.2.2",
+    "@variate/engine": "^3.3.0",
     "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-conventional": "^8.3.4",
-    "@vue/test-utils": "^1.0.0-beta.33",
-    "babel-jest": "^25.3.0",
-    "cz-conventional-changelog": "^3.1.0",
-    "eslint": "^6.8.0",
+    "@vue/test-utils": "^1.0.2",
+    "babel-jest": "^26.0.1",
+    "cz-conventional-changelog": "^3.2.0",
+    "eslint": "^7.0.0",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.2.5",
-    "jest": "^25.3.0",
+    "jest": "^26.0.1",
     "lint-staged": "^10.2.2",
     "rimraf": "^3.0.2",
-    "rollup": "^2.6.0",
+    "rollup": "^2.10.2",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-buble": "^0.19.8",
     "rollup-plugin-commonjs": "^10.1.0",
@@ -43,7 +43,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-uglify": "^6.0.4",
-    "standard-version": "^7.1.0",
+    "standard-version": "^8.0.0",
     "vue-jest": "^3.0.5"
   },
   "repository": {
