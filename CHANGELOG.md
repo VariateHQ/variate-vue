@@ -21,7 +21,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### ⚠ BREAKING CHANGES
 
-* **engine:** https://github.com/VariateApp/variate-engine/pull/12
+* **engine:** https://github.com/VariateHQ/variate-engine/pull/12
 
 ### Features
 
